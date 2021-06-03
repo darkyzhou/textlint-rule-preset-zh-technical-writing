@@ -1,0 +1,53 @@
+{
+  "private": true,
+  "name": "textlint-rule-preset-zh-technical-writing",
+  "scripts": {
+    "lerna": "lerna",
+    "cz": "cz",
+    "mocha": "mocha",
+    "mocha:test-all": "mocha './packages/**/dist/test/*.js'",
+    "build": "npm-run-all build:** --parallel",
+    "build:test": "lerna exec -- build:test",
+    "build:src": "lerna exec -- build:src",
+    "test": "npm-run-all build mocha:test-all"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "lint-staged": {
+    "packages/**/*.{js,json}": [
+      "prettier --write packages/**/*.{js,json}",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "@textlint/markdown-to-ast": "^12.0.0",
+    "@textlint/text-to-ast": "^12.0.0",
+    "commitizen": "^4.2.4",
+    "conventional-changelog-cli": "^2.1.1",
+    "core-js": "3.13.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^6.0.0",
+    "lerna": "^4.0.0",
+    "lint-staged": "^11.0.0",
+    "mocha": "^8.4.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.0",
+    "textlint-tester": "^12.0.0"
+  }
+}

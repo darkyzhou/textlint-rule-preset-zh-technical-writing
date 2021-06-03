@@ -1,0 +1,32 @@
+{
+  "name": "textlint-rule-zh-space-of-pangu",
+  "version": "0.0.0",
+  "description": "A textlint rule that enforce the usage of the space of pangu in Chinese texts",
+  "author": {
+    "name": "darkyzhou",
+    "email": "darkyoooooo@gmail.com",
+    "url": "https://github.com/darkyzhou"
+  },
+  "homepage": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing#readme",
+  "license": "MIT",
+  "main": "dist/src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing.git",
+    "directory": "packages/textlint-rule-zh-space-of-pangu"
+  },
+  "bugs": {
+    "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"
+  },
+  "dependencies": {
+    "textlint-rule-helper": "^2.2.0",
+    "textlint-util-zh": "^0.0.0"
+  },
+  "scripts": {
+    "mocha:test-all": "mocha './dist/test/*.js'",
+    "build": "npm-run-all -p build:**",
+    "build:test": "babel test --config-file ../../babel.config.json --out-dir dist/test",
+    "build:src": "babel src --config-file ../../babel.config.json --out-dir dist/src",
+    "test": "npm-run-all build mocha:test-all"
+  }
+}
