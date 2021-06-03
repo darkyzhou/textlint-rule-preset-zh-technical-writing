@@ -11,11 +11,11 @@ tester.run('盘古之白', rule, {
       errors: [
         {
           message: '中文与数字、英文之间需要增加空格',
-          column: 2
+          index: 2
         },
         {
           message: '中文与数字、英文之间需要增加空格',
-          column: 31
+          index: 31
         }
       ]
     }
