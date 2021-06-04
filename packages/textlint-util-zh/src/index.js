@@ -4,7 +4,8 @@ export function getTextContent(node) {
   }
 
   if (!node.children) {
-    return node.value;
+    // only TxtTextNode has the property 'value'
+    return node.value || '';
   } else {
     return node.children.map((childNode) => getTextContent(childNode)).join('');
   }

@@ -8,15 +8,15 @@ export default (context) => {
 
   return {
     [Syntax.Code](node) {
-      doCheck(context, node, 1);
+      doCheck(context, node, 1, Syntax);
     },
     [Syntax.Str](node) {
-      doCheck(context, node, 0);
+      doCheck(context, node, 0, Syntax);
     }
   };
 };
 
-function doCheck(context, node, extraIndexPadding) {
+function doCheck(context, node, extraIndexPadding, syntax) {
   const { RuleError, report } = context;
   const helper = new RuleHelper(context);
   const ancestors = helper.getParents(node);
@@ -53,9 +53,11 @@ function doCheck(context, node, extraIndexPadding) {
       if (checkBeginSpace) {
         if (containingNodeIndex > 0) {
           const nodeToLookForSpace = ancestorChildren[containingNodeIndex - 1];
-          const nodeText = getTextContent(nodeToLookForSpace);
-          if (!nodeText.endsWith(' ')) {
-            errors.push({ index: extraIndexPadding + beginIndex });
+          if (nodeToLookForSpace.type !== syntax.Break) {
+            const nodeText = getTextContent(nodeToLookForSpace);
+            if (!nodeText.endsWith(' ')) {
+              errors.push({ index: extraIndexPadding + beginIndex });
+            }
           }
           checkBeginSpace = false;
         }
@@ -63,9 +65,11 @@ function doCheck(context, node, extraIndexPadding) {
       if (checkEndSpace) {
         if (containingNodeIndex < ancestorChildren.length - 1) {
           const nodeToLookForSpace = ancestorChildren[containingNodeIndex + 1];
-          const nodeText = getTextContent(nodeToLookForSpace);
-          if (!nodeText.startsWith(' ')) {
-            errors.push({ index: extraIndexPadding + endIndex });
+          if (nodeToLookForSpace.type !== syntax.Break) {
+            const nodeText = getTextContent(nodeToLookForSpace);
+            if (!nodeText.startsWith(' ')) {
+              errors.push({ index: extraIndexPadding + endIndex });
+            }
           }
           checkEndSpace = false;
         }
