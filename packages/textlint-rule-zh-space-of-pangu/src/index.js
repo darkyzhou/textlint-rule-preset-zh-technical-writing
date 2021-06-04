@@ -2,8 +2,7 @@ import { RuleHelper } from 'textlint-rule-helper';
 import { getTextContent } from 'textlint-util-zh';
 
 const WORD_REGEX = /[\w-]+/gi;
-const FULL_WORD_REGEX = /^[\w-]$/i;
-const SPACE_REGEX = /((?<space>[ ]+)|(?<word>[^ ]+))/g;
+const SPACE_REGEX = /(?<space>[ ]+)|(?<word>[^ ]+)/g;
 
 export default (context) => {
   const { Syntax } = context;
@@ -41,11 +40,11 @@ function checkMissingSpaces(context, node, extraIndexPadding) {
     const beginIndex = match.index;
     const endIndex = match.index + match[0].length - 1;
 
-    if (beginIndex > 0 && !isValidSurroundingsForNonChineseWords(nodeValue[beginIndex - 1])) {
+    if (beginIndex > 0 && !isValidBeforeNonChineseWords(nodeValue[beginIndex - 1])) {
       errorIndexes.push(beginIndex);
     }
 
-    if (endIndex < nodeValue.length - 1 && !isValidSurroundingsForNonChineseWords(nodeValue[endIndex + 1])) {
+    if (endIndex < nodeValue.length - 1 && !isValidAfterNonChineseWords(nodeValue[endIndex + 1])) {
       errorIndexes.push(endIndex);
     }
 
@@ -70,7 +69,7 @@ function checkMissingSpaces(context, node, extraIndexPadding) {
           if (nodeToLookForSpace.type !== Syntax.Break) {
             const nodeText = getTextContent(nodeToLookForSpace);
             // TODO: handle the case when nodeText === ''
-            if (!isValidSurroundingsForNonChineseWords(nodeText.slice(-1))) {
+            if (!isValidBeforeNonChineseWords(nodeText.slice(-1))) {
               errorIndexes.push(beginIndex);
             }
           }
@@ -83,7 +82,7 @@ function checkMissingSpaces(context, node, extraIndexPadding) {
           if (nodeToLookForSpace.type !== Syntax.Break) {
             const nodeText = getTextContent(nodeToLookForSpace);
             // TODO: handle the case when nodeText === ''
-            if (!isValidSurroundingsForNonChineseWords(nodeText[0])) {
+            if (!isValidAfterNonChineseWords(nodeText[0])) {
               errorIndexes.push(endIndex);
             }
           }
@@ -99,17 +98,19 @@ function checkMissingSpaces(context, node, extraIndexPadding) {
 }
 
 function checkRedundantSpaces(context, node, extraIndexPadding) {
-  const { RuleError, Syntax } = context;
+  const { RuleError } = context;
   const nodeValue = node.value;
   const results = [...nodeValue.matchAll(SPACE_REGEX)];
   const errors = [];
+
   results.forEach((result, i) => {
     const match = result[0];
     const beginIndex = result.index;
     const endIndex = result.index + match.length - 1;
-    const isSpace = result.groups.space;
 
-    if (isSpace) {
+    if (result.groups.space) {
+      // TODO: no multiple joined spaces
+
       if (i < results.length - 1 && isChinesePunctuation(results[i + 1][0][0])) {
         // TODO: no punctuations at the beginning of a line
         errors.push({ message: '全角标点与其他字符之间不需要加空格', index: extraIndexPadding + beginIndex });
@@ -118,15 +119,27 @@ function checkRedundantSpaces(context, node, extraIndexPadding) {
       if (i > 0 && isChinesePunctuation(results[i - 1][0].slice(-1))) {
         errors.push({ message: '全角标点与其他字符之间不需要加空格', index: extraIndexPadding + endIndex });
       }
+    } else {
+      if (i > 0 && isDegreeSignOrPercentageSign(match) && results[i - 1][0].endsWith(' ')) {
+        errors.push({ message: '度数、百分比与数字之间不需要增加空格', index: extraIndexPadding + beginIndex - 1 });
+      }
     }
   });
   return errors.map((error) => new RuleError(error.message, { index: error.index }));
 }
 
-function isValidSurroundingsForNonChineseWords(character) {
+function isValidBeforeNonChineseWords(character) {
   return /[ ]/i.test(character) || isChinesePunctuation(character);
 }
 
-function isChinesePunctuation(word) {
-  return /^[\p{Punctuation}]+$/u.test(word) && /^[\p{Script=Han}]+$/u;
+function isValidAfterNonChineseWords(character) {
+  return /[ ]/i.test(character) || isChinesePunctuation(character) || isDegreeSignOrPercentageSign(character);
+}
+
+function isChinesePunctuation(character) {
+  return /^[（）〈〉《》「」『』﹃﹄〔〕…—～﹏、【】，。？！：；“”‘’]$/u.test(character);
+}
+
+function isDegreeSignOrPercentageSign(character) {
+  return /^[℉℃°%]$/u.test(character);
 }
