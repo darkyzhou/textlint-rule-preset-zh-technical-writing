@@ -9,7 +9,10 @@
   },
   "homepage": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing#readme",
   "license": "MIT",
-  "main": "dist/src/index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing.git",
@@ -19,13 +22,10 @@
     "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"
   },
   "scripts": {
-    "mocha:test-all": "mocha './dist/test/*.js'",
-    "build": "npm-run-all -p build:**",
-    "build:test": "babel test --config-file ../../babel.config.json --out-dir dist/test",
-    "build:src": "babel src --config-file ../../babel.config.json --out-dir dist/src",
-    "test": "npm-run-all build mocha:test-all"
+    "build": "babel src --config-file ./babel.config.json --out-dir dist",
+    "test": "mocha --require @babel/register"
   },
   "publishConfig": {
-    "directory": "dist/src"
+    "directory": "dist"
   }
 }
