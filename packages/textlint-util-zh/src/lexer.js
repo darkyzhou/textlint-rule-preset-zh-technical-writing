@@ -21,7 +21,7 @@ export function* tokenize(string) {
   const currentTokens = [];
   let lastBeginIndex;
   let lastTokenType;
-  let lastToken = '';
+  let lastTokenString = '';
 
   let index = 0;
   for (const character of string) {
@@ -30,19 +30,20 @@ export function* tokenize(string) {
     if (!lastTokenType) {
       lastBeginIndex = index;
       lastTokenType = tokenType;
-      lastToken += character;
+      lastTokenString += character;
     } else if (lastTokenType !== tokenType) {
       currentTokens.push({
-        token: lastToken,
+        string: lastTokenString,
         beginIndex: lastBeginIndex,
-        endIndex: lastBeginIndex + lastToken.length - 1,
+        endIndex: lastBeginIndex + lastTokenString.length - 1,
         type: lastTokenType
       });
       lastBeginIndex = index;
-      lastToken = character;
+      lastTokenString = character;
       lastTokenType = tokenType;
 
       yield {
+        topToken: currentTokens[currentTokens.length - 1],
         // notice: the tokens to be yielded is reversed
         // this is for the convenience of consumers in
         // which they can look up previous tokens through
@@ -51,13 +52,14 @@ export function* tokenize(string) {
         tokens: [...currentTokens].reverse()
       };
     } else {
-      lastToken += character;
+      lastTokenString += character;
     }
 
     index++;
   }
 
   return {
+    topToken: currentTokens[currentTokens.length - 1],
     tokens: [...currentTokens].reverse()
   };
 }

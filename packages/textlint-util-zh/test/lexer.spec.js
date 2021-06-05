@@ -26,14 +26,15 @@ describe('lexer', function () {
     it('should output correct tokens', function () {
       for (const { string, expectedTokens } of TOKEN_CASES) {
         let i = 0;
-        for (const { tokens } of tokenize(string)) {
+        for (const { topToken, tokens } of tokenize(string)) {
+          assert.deepStrictEqual(topToken, tokens[0]);
           assert.deepStrictEqual(
             tokens,
             expectedTokens
               .slice(0, ++i)
               .reverse()
-              .map(([token, beginIndex, endIndex, type]) => ({
-                token,
+              .map(([string, beginIndex, endIndex, type]) => ({
+                string,
                 beginIndex,
                 endIndex,
                 type
