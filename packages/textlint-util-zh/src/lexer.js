@@ -1,16 +1,25 @@
+import {
+  REGEX_CHINESE_CHARACTER,
+  REGEX_CHINESE_PUNCTUATION,
+  REGEX_ENGLISH_WORD_CHARACTER,
+  REGEX_NUMBER,
+  REGEX_NUMBER_SYMBOL,
+  REGEX_SPACE
+} from './zh-regex';
+
 function getTokenType(character) {
   switch (true) {
-    case /^[\p{Script=Han}]$/u.test(character):
+    case REGEX_CHINESE_CHARACTER.test(character):
       return 'zh_char';
-    case /^[（）〈〉《》「」『』﹃﹄〔〕…—～﹏、【】，。？！：；“”‘’]$/u.test(character):
+    case REGEX_CHINESE_PUNCTUATION.test(character):
       return 'zh_punt';
-    case /^[℉℃°%]$/u.test(character):
+    case REGEX_NUMBER_SYMBOL.test(character):
       return 'number_symbol';
-    case /^\d$/.test(character):
+    case REGEX_NUMBER.test(character):
       return 'number';
-    case /^[\w-\/]$/i.test(character):
+    case REGEX_ENGLISH_WORD_CHARACTER.test(character):
       return 'en_char';
-    case /^\s$/.test(character):
+    case REGEX_SPACE.test(character):
       return 'space';
     default:
       return 'unknown';
@@ -23,9 +32,18 @@ export function runLexerOnString(string, consumer) {
   }
 
   const currentTokens = [];
-  let lastBeginIndex;
-  let lastTokenType;
-  let lastTokenString = '';
+  const emit = () =>
+    consumer({
+      topToken: currentTokens[currentTokens.length - 1],
+      // notice: the tokens to be yielded is reversed
+      // this is for the convenience of consumers in
+      // which they can look up previous tokens through
+      // tokens[1], tokens[2], ...
+      // instead of tokens[tokens.length - 2], ...
+      tokens: [...currentTokens].reverse()
+    });
+
+  let lastToken;
   let index = -1;
 
   for (const character of string) {
@@ -33,45 +51,31 @@ export function runLexerOnString(string, consumer) {
 
     const tokenType = getTokenType(character);
 
-    if (!lastTokenType) {
-      lastBeginIndex = index;
-      lastTokenType = tokenType;
-      lastTokenString += character;
-    } else if (lastTokenType !== tokenType) {
-      currentTokens.push({
-        string: lastTokenString,
-        beginIndex: lastBeginIndex,
-        endIndex: lastBeginIndex + lastTokenString.length - 1,
-        type: lastTokenType
-      });
-      lastBeginIndex = index;
-      lastTokenString = character;
-      lastTokenType = tokenType;
-
-      consumer({
-        topToken: currentTokens[currentTokens.length - 1],
-        // notice: the tokens to be yielded is reversed
-        // this is for the convenience of consumers in
-        // which they can look up previous tokens through
-        // tokens[1], tokens[2], ...
-        // instead of tokens[tokens.length - 2], ...
-        tokens: [...currentTokens].reverse()
-      });
+    if (!lastToken) {
+      lastToken = {
+        string: character,
+        beginIndex: index,
+        endIndex: index,
+        type: tokenType
+      };
+    } else if (lastToken.type === tokenType) {
+      lastToken.string += character;
+      lastToken.endIndex++;
     } else {
-      lastTokenString += character;
+      currentTokens.push(lastToken);
+      emit();
+
+      lastToken = {
+        string: character,
+        beginIndex: index,
+        endIndex: index,
+        type: tokenType
+      };
     }
 
     if (index === string.length - 1) {
-      currentTokens.push({
-        string: lastTokenString,
-        beginIndex: lastBeginIndex,
-        endIndex: lastBeginIndex + lastTokenString.length - 1,
-        type: lastTokenType
-      });
-      consumer({
-        topToken: currentTokens[currentTokens.length - 1],
-        tokens: [...currentTokens].reverse()
-      });
+      currentTokens.push(lastToken);
+      emit();
     }
   }
 }
