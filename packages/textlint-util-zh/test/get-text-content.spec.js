@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { getTextContent } from '../src/index';
+import { getTextContent } from '../src';
 import { parse as parseTextAst } from '@textlint/text-to-ast';
 import { parse as parseMarkdownAst } from '@textlint/markdown-to-ast';
 
