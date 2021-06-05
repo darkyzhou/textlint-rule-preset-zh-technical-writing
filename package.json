@@ -30,6 +30,7 @@
     "@commitlint/config-conventional": "^12.1.4",
     "@textlint/markdown-to-ast": "^12.0.0",
     "@textlint/text-to-ast": "^12.0.0",
+    "babel-plugin-import-directory": "^1.1.0",
     "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
     "core-js": "3.13.1",
