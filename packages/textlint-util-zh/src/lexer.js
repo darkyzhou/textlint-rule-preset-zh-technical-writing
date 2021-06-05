@@ -69,7 +69,7 @@ export function runLexerOnString(string, consumer) {
     throw new Error('invalid argument');
   }
 
-  for (const { tokens } of tokenize(string)) {
-    consumer(tokens);
+  for (const stepResult of tokenize(string)) {
+    consumer(stepResult);
   }
 }
