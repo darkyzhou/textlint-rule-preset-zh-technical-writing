@@ -19,20 +19,26 @@ function getTokenType(character) {
 
 export function* tokenize(string) {
   const currentTokens = [];
+  let lastBeginIndex;
   let lastTokenType;
   let lastToken = '';
 
+  let index = 0;
   for (const character of string) {
     const tokenType = getTokenType(character);
 
     if (!lastTokenType) {
+      lastBeginIndex = index;
       lastTokenType = tokenType;
       lastToken += character;
     } else if (lastTokenType !== tokenType) {
       currentTokens.push({
         token: lastToken,
+        beginIndex: lastBeginIndex,
+        endIndex: lastBeginIndex + lastToken.length - 1,
         type: lastTokenType
       });
+      lastBeginIndex = index;
       lastToken = character;
       lastTokenType = tokenType;
 
@@ -47,6 +53,8 @@ export function* tokenize(string) {
     } else {
       lastToken += character;
     }
+
+    index++;
   }
 
   return {
