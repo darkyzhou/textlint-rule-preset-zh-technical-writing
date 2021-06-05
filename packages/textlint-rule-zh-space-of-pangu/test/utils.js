@@ -24,16 +24,18 @@ export function makeLintingRuleWith({ nodeBasedRules = [], tokenBasedRules = [] 
 }
 
 export function toValidTestCase(ext, arrayInput) {
-  return arrayInput.map(([valid]) => ({ ext, text: valid }));
+  return arrayInput.filter(([valid]) => valid).map(([valid]) => ({ ext, text: valid }));
 }
 
 export function toInvalidTestCase(ext, arrayInput) {
-  return arrayInput.map(([fixedOutput, invalid, ...errors]) => ({
-    ext,
-    output: fixedOutput,
-    text: invalid,
-    errors: toTesterErrorObject(errors)
-  }));
+  return arrayInput
+    .filter(([_, ...others]) => others.length > 0)
+    .map(([fixedOutput, invalid, ...errors]) => ({
+      ext,
+      output: fixedOutput,
+      text: invalid,
+      errors: toTesterErrorObject(errors)
+    }));
 }
 
 function toTesterErrorObject(caseErrors) {
