@@ -25,18 +25,16 @@ const markdownTestData = [
   }
 ];
 
-describe('plain text', function () {
-  describe('getTextContent()', function () {
+describe('getTextContent()', function () {
+  describe('plain text', function () {
     it('should return correct results', function () {
       for (const { ast, expected } of plainTextTestData) {
         assert.deepStrictEqual(getTextContent(ast), expected);
       }
     });
   });
-});
 
-describe('markdown', function () {
-  describe('getTextContent()', function () {
+  describe('markdown', function () {
     it('should return correct results', function () {
       for (const { ast, expected } of markdownTestData) {
         assert.deepStrictEqual(getTextContent(ast), expected);
