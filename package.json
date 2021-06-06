@@ -33,7 +33,6 @@
     "babel-plugin-import-directory": "^1.1.0",
     "commitizen": "^4.2.4",
     "conventional-changelog-cli": "^2.1.1",
-    "core-js": "3.13.1",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^6.0.0",
     "lerna": "^4.0.0",
