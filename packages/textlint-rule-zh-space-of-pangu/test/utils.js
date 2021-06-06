@@ -1,5 +1,5 @@
-import { doCheck } from '../src';
 import TextLintTester from 'textlint-tester';
+import { checkNode } from 'textlint-util-zh';
 
 export function runRuleTest({ name, nodeBasedRules, tokenBasedRules, plainTextCases = [], markdownCases = [] }) {
   const tester = new TextLintTester();
@@ -38,10 +38,10 @@ export function makeLintingRuleWith({ nodeBasedRules = [], tokenBasedRules = [] 
 
     return {
       [Syntax.Code](node) {
-        doCheck(ruleObjects, context, node, true);
+        checkNode(ruleObjects, context, node);
       },
       [Syntax.Str](node) {
-        doCheck(ruleObjects, context, node, false);
+        checkNode(ruleObjects, context, node);
       }
     };
   };
