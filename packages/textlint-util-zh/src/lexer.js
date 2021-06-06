@@ -22,7 +22,7 @@ function getTokenType(character) {
     case REGEX_SPACE.test(character):
       return 'space';
     default:
-      return 'unknown';
+      return 'other';
   }
 }
 
