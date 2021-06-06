@@ -3,7 +3,7 @@ import { runLexerOnString } from '../src/lexer';
 
 const TOKEN_CASES = [
   {
-    string: '新 MacBook  有15% 的$提升！',
+    string: '新 MacBook  有15% 的$提升\n！',
     expected: [
       ['新', 0, 0, 'zh_char'],
       [' ', 1, 1, 'space'],
@@ -16,7 +16,8 @@ const TOKEN_CASES = [
       ['的', 16, 16, 'zh_char'],
       ['$', 17, 17, 'other'],
       ['提升', 18, 19, 'zh_char'],
-      ['！', 20, 20, 'zh_punt']
+      ['\n', 20, 20, 'space'],
+      ['！', 21, 21, 'zh_punt']
     ]
   }
 ];
