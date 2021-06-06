@@ -20,10 +20,10 @@ function entry(context) {
 
   return {
     [Syntax.Code](node) {
-      doCheck(ruleObjects, context, node);
+      doCheck(ruleObjects, context, node, true);
     },
     [Syntax.Str](node) {
-      doCheck(ruleObjects, context, node);
+      doCheck(ruleObjects, context, node, false);
     }
   };
 }
@@ -34,10 +34,11 @@ export function doCheck(
     tokenBased: []
   },
   context,
-  node
+  node,
+  isInCodeNode
 ) {
   const { report } = context;
-  const value = node.value;
+  const nodeRaw = node.raw;
   const nodeTypeInLowerCase = node.type.toLowerCase();
   const helper = new RuleHelper(context);
   const errors = [];
@@ -51,18 +52,20 @@ export function doCheck(
     }
   }
 
-  runLexerOnString(value, ({ topToken, tokens }) => {
-    const type = topToken.type;
+  if (!isInCodeNode) {
+    runLexerOnString(nodeRaw, ({ topToken, tokens }) => {
+      const type = topToken.type;
 
-    for (const rule of ruleObjects.tokenBased) {
-      if (rule[type]) {
-        const error = rule[type](context, node, topToken, tokens);
-        if (error) {
-          errors.push(error);
+      for (const rule of ruleObjects.tokenBased) {
+        if (rule[type]) {
+          const error = rule[type](context, node, topToken, tokens);
+          if (error) {
+            errors.push(error);
+          }
         }
       }
-    }
-  });
+    });
+  }
 
   // rule functions may return either a single RuleError
   // object or an array of RuleError objects

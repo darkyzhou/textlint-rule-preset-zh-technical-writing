@@ -6,12 +6,24 @@ export function runRuleTest({ name, nodeBasedRules, tokenBasedRules, plainTextCa
   const rule = makeLintingRuleWith({ nodeBasedRules, tokenBasedRules });
 
   describe(`${name}`, function () {
-    tester.run('valid cases', rule, {
-      valid: [...toValidTestCase('.txt', plainTextCases), ...toValidTestCase('.md', markdownCases)]
+    describe('plain text', function () {
+      tester.run('valid cases', rule, {
+        valid: toValidTestCase('.txt', plainTextCases)
+      });
+
+      tester.run('invalid cases', rule, {
+        invalid: toInvalidTestCase('.txt', plainTextCases)
+      });
     });
 
-    tester.run('invalid cases', rule, {
-      invalid: [...toInvalidTestCase('.txt', plainTextCases), ...toInvalidTestCase('.md', markdownCases)]
+    describe('markdown', function () {
+      tester.run('valid cases', rule, {
+        valid: toValidTestCase('.md', markdownCases)
+      });
+
+      tester.run('invalid cases', rule, {
+        invalid: toInvalidTestCase('.md', markdownCases)
+      });
     });
   });
 }
@@ -26,10 +38,10 @@ export function makeLintingRuleWith({ nodeBasedRules = [], tokenBasedRules = [] 
 
     return {
       [Syntax.Code](node) {
-        doCheck(ruleObjects, context, node);
+        doCheck(ruleObjects, context, node, true);
       },
       [Syntax.Str](node) {
-        doCheck(ruleObjects, context, node);
+        doCheck(ruleObjects, context, node, false);
       }
     };
   };

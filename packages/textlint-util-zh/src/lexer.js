@@ -56,11 +56,14 @@ export function runLexerOnString(string, consumer) {
         string: character,
         beginIndex: index,
         endIndex: index,
-        type: tokenType
+        type: tokenType,
+        first: true,
+        last: index === string.length - 1
       };
     } else if (lastToken.type === tokenType) {
       lastToken.string += character;
       lastToken.endIndex++;
+      lastToken.last = lastToken.endIndex === string.length - 1;
     } else {
       currentTokens.push(lastToken);
       emit();
@@ -69,7 +72,9 @@ export function runLexerOnString(string, consumer) {
         string: character,
         beginIndex: index,
         endIndex: index,
-        type: tokenType
+        type: tokenType,
+        first: false,
+        last: index === string.length - 1
       };
     }
 

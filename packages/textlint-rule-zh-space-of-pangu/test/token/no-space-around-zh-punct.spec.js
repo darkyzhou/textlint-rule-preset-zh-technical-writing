@@ -1,5 +1,5 @@
-import ruleObject from '../src/rules/token/no-space-around-zh-punct.rule';
-import { runRuleTest } from './utils';
+import ruleObject from '../../src/rules/token/no-space-around-zh-punct.rule';
+import { runRuleTest } from '../utils';
 
 const PLAIN_TEXT_CASES = [
   ['刚刚买了一部 iPhone，好开心！', '刚刚买了一部 iPhone， 好开心 ！', '全角标点与其他字符之间不需要添加空格', 14, 18],
