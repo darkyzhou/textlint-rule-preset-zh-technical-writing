@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { runLexerOnString, tokenize } from '../src/lexer';
+import { runLexerOnString } from '../src/lexer';
 
 const TOKEN_CASES = [
   {
