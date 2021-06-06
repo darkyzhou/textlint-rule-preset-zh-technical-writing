@@ -22,7 +22,7 @@ const TOKEN_CASES = [
 ];
 
 describe('lexer', function () {
-  describe('runLexerOnString()', function () {
+  describe('#runLexerOnString()', function () {
     it('should output correct tokens', function () {
       for (const { string, expected } of TOKEN_CASES) {
         let i = 0;

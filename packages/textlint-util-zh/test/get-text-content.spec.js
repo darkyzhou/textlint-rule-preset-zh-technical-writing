@@ -25,7 +25,7 @@ const markdownTestData = [
   }
 ];
 
-describe('getTextContent()', function () {
+describe('#getTextContent()', function () {
   describe('plain text', function () {
     it('should return correct results', function () {
       for (const { ast, expected } of plainTextTestData) {
