@@ -4,7 +4,7 @@ import ruleObject from '../../src/rules/token/no-redundant-space-around-token.ru
 const PLAIN_TEXT_CASES = [
   ['测试 Test 文本', '测试  Test   文本', '多余的空格', 2, 8],
   ['测试，测试，测试！', '测试， 测试， 测试 ！', '多余的空格', 3, 7, 10],
-  ['已经 200% 了', '已经  200  % 了', '多余的空格', 2, 7]
+  ['已经 200% 了', '已 经  200% 了', '多余的空格', 1, 3]
 ];
 
 const MARKDOWN_CASES = [

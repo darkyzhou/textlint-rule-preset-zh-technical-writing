@@ -1,6 +1,6 @@
 import tokenBasedRules from './rules/token/*';
 import nodeBasedRules from './rules/node/*';
-import { runLexerOnString } from 'textlint-util-zh';
+import { toTokens } from 'textlint-util-zh';
 import { RuleHelper } from 'textlint-rule-helper';
 
 const TOKEN_BASED_RULE_OBJECTS = Object.values(tokenBasedRules);
@@ -53,21 +53,40 @@ export function doCheck(
   }
 
   if (!isInCodeNode) {
-    runLexerOnString(nodeRaw, ({ topToken, tokens }) => {
-      const type = topToken.type;
-
+    const tokens = toTokens(nodeRaw);
+    tokens.forEach((currentToken, currentIndex) => {
+      const type = currentToken.type;
       for (const rule of ruleObjects.tokenBased) {
-        if (rule[type]) {
-          const error = rule[type](context, node, topToken, tokens);
-          if (error) {
-            errors.push(error);
+        const ruleFunction = rule[type];
+        if (typeof ruleFunction === 'function') {
+          const result = ruleFunction.call(rule, {
+            textLintCtx: context,
+            node,
+            currentToken,
+            currentIndex,
+            tokens,
+            previousToken: tokens[currentIndex - 1], // may be 'undefined'
+            nextToken: tokens[currentIndex + 1] // may be 'undefined'
+          });
+
+          // rule functions may return undefined, a RuleError
+          // object, or an array of RuleError objects
+          switch (true) {
+            case !result:
+              continue;
+            case Array.isArray(result):
+              errors.push(...result);
+              break;
+            case result && typeof result === 'object':
+              errors.push(result);
+              break;
+            default:
+              throw new Error(`unknown return value ${JSON.stringify(result)}`);
           }
         }
       }
     });
   }
 
-  // rule functions may return either a single RuleError
-  // object or an array of RuleError objects
-  errors.flat().forEach((error) => report(node, error));
+  errors.forEach((error) => report(node, error));
 }

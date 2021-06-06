@@ -1,5 +1,5 @@
 import assert from 'assert';
-import { runLexerOnString } from '../src/lexer';
+import { toTokens } from '../src/lexer';
 
 const TOKEN_CASES = [
   {
@@ -30,8 +30,7 @@ describe('lexer', function () {
   describe('#runLexerOnString()', function () {
     it('should output correct tokens', function () {
       for (const { string, expected } of TOKEN_CASES) {
-        let i = 0;
-        let lastTokens;
+        const tokens = toTokens(string);
         const expectedTokens = expected.map(([string, beginIndex, endIndex, type, first, last]) => ({
           string,
           beginIndex,
@@ -40,13 +39,7 @@ describe('lexer', function () {
           first,
           last
         }));
-
-        runLexerOnString(string, ({ topToken, tokens }) => {
-          lastTokens = tokens;
-          assert.deepStrictEqual(topToken, tokens[0]);
-          assert.deepStrictEqual(tokens, expectedTokens.slice(0, ++i).reverse());
-        });
-        assert.deepStrictEqual(lastTokens, expectedTokens.reverse());
+        assert.deepStrictEqual(tokens, expectedTokens);
       }
     });
   });

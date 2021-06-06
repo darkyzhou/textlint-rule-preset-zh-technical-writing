@@ -26,23 +26,12 @@ function getTokenType(character) {
   }
 }
 
-export function runLexerOnString(string, consumer) {
-  if (typeof string !== 'string' || typeof consumer !== 'function') {
+export function toTokens(string) {
+  if (typeof string !== 'string') {
     throw new Error('invalid argument');
   }
 
-  const currentTokens = [];
-  const emit = () =>
-    consumer({
-      topToken: currentTokens[currentTokens.length - 1],
-      // notice: the tokens to be yielded is reversed
-      // this is for the convenience of consumers in
-      // which they can look up previous tokens through
-      // tokens[1], tokens[2], ...
-      // instead of tokens[tokens.length - 2], ...
-      tokens: [...currentTokens].reverse()
-    });
-
+  const tokens = [];
   let lastToken;
   let index = -1;
 
@@ -65,9 +54,7 @@ export function runLexerOnString(string, consumer) {
       lastToken.endIndex++;
       lastToken.last = lastToken.endIndex === string.length - 1;
     } else {
-      currentTokens.push(lastToken);
-      emit();
-
+      tokens.push(lastToken);
       lastToken = {
         string: character,
         beginIndex: index,
@@ -79,8 +66,9 @@ export function runLexerOnString(string, consumer) {
     }
 
     if (index === string.length - 1) {
-      currentTokens.push(lastToken);
-      emit();
+      tokens.push(lastToken);
     }
   }
+
+  return tokens;
 }
