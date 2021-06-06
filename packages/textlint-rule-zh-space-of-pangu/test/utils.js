@@ -1,4 +1,20 @@
 import { doCheck } from '../src';
+import TextLintTester from 'textlint-tester';
+
+export function runRuleTest({ name, nodeBasedRules, tokenBasedRules, plainTextCases = [], markdownCases = [] }) {
+  const tester = new TextLintTester();
+  const rule = makeLintingRuleWith({ nodeBasedRules, tokenBasedRules });
+
+  describe(`${name}`, function () {
+    tester.run('valid cases', rule, {
+      valid: [...toValidTestCase('.txt', plainTextCases), ...toValidTestCase('.md', markdownCases)]
+    });
+
+    tester.run('invalid cases', rule, {
+      invalid: [...toInvalidTestCase('.txt', plainTextCases), ...toInvalidTestCase('.md', markdownCases)]
+    });
+  });
+}
 
 export function makeLintingRuleWith({ nodeBasedRules = [], tokenBasedRules = [] }) {
   const entry = (context) => {
