@@ -3,10 +3,10 @@ import { REGEX_CHINESE_PUNCTUATION, REGEX_SPACE } from 'textlint-util-zh';
 
 export default {
   code: (context, node, helper) => {
-    const { Syntax, RuleError } = context;
+    const { Syntax, RuleError, fixer } = context;
     const ancestors = helper.getParents(node);
+    const errors = [];
 
-    const errorIndexes = [];
     let containingNode = node;
     let checkForBegin = true;
     let checkForEnd = true;
@@ -32,8 +32,13 @@ export default {
           if (nodeToFindForSpace.type !== Syntax.Break) {
             const nodeTextEnd = getTextContent(nodeToFindForSpace).slice(-1);
             if (!REGEX_SPACE.test(nodeTextEnd) && !REGEX_CHINESE_PUNCTUATION.test(nodeTextEnd)) {
-              // mark index at the beginning of the node
-              errorIndexes.push(0);
+              errors.push(
+                new RuleError('行内代码块周围需要添加空格', {
+                  // mark index at the beginning of the node
+                  index: 0,
+                  fix: fixer.insertTextBefore(node, ' ')
+                })
+              );
             }
           }
         }
@@ -48,13 +53,19 @@ export default {
             const nodeTextBegin = getTextContent(nodeToFindForSpace)[0];
             if (!REGEX_SPACE.test(nodeTextBegin) && !REGEX_CHINESE_PUNCTUATION.test(nodeTextBegin)) {
               // mark index at the end of the node
-              errorIndexes.push(node.range[1] - node.range[0]);
+              const index = node.range[1] - node.range[0] - 1;
+              errors.push(
+                new RuleError('行内代码块周围需要添加空格', {
+                  index,
+                  fix: fixer.insertTextAfter(node, ' ')
+                })
+              );
             }
           }
         }
       }
     }
 
-    return errorIndexes.map((index) => new RuleError('行内代码块周围需要添加空格', { index }));
+    return errors;
   }
 };

@@ -43,11 +43,26 @@ export function doCheck(
   const helper = new RuleHelper(context);
   const errors = [];
 
+  const appendToErrors = (result) => {
+    // rule functions may return undefined, a RuleError
+    // object, or an array of RuleError objects
+    switch (true) {
+      case Array.isArray(result):
+        errors.push(...result);
+        break;
+      case result && typeof result === 'object':
+        errors.push(result);
+        break;
+      default:
+        throw new Error(`unknown return value ${JSON.stringify(result)}`);
+    }
+  };
+
   for (const rule of ruleObjects.nodeBased) {
     if (rule[nodeTypeInLowerCase]) {
-      const error = rule[nodeTypeInLowerCase](context, node, helper);
-      if (error) {
-        errors.push(error);
+      const result = rule[nodeTypeInLowerCase](context, node, helper);
+      if (result) {
+        appendToErrors(result);
       }
     }
   }
@@ -68,20 +83,8 @@ export function doCheck(
             previousToken: tokens[currentIndex - 1], // may be 'undefined'
             nextToken: tokens[currentIndex + 1] // may be 'undefined'
           });
-
-          // rule functions may return undefined, a RuleError
-          // object, or an array of RuleError objects
-          switch (true) {
-            case !result:
-              continue;
-            case Array.isArray(result):
-              errors.push(...result);
-              break;
-            case result && typeof result === 'object':
-              errors.push(result);
-              break;
-            default:
-              throw new Error(`unknown return value ${JSON.stringify(result)}`);
+          if (result) {
+            appendToErrors(result);
           }
         }
       }
