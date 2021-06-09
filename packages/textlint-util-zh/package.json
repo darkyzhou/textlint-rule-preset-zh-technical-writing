@@ -22,8 +22,7 @@
     "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"
   },
   "scripts": {
-    "build": "babel src --config-file ./babel.config.json --out-dir dist",
-    "test": "mocha --require @babel/register"
+    "build": "babel src --config-file ./babel.config.json --out-dir dist"
   },
   "dependencies": {
     "core-js": "3.13.1"

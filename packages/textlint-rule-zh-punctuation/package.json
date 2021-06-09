@@ -1,13 +1,13 @@
 {
-  "name": "textlint-rule-zh-space-of-pangu",
+  "name": "textlint-rule-zh-punctuation",
   "version": "0.0.0",
-  "description": "A textlint rule that enforce the usage of the space of pangu in Chinese texts",
+  "description": "A textlint rule that enforce the usage of punctuations in Chinese texts",
   "author": {
     "name": "darkyzhou",
     "email": "darkyoooooo@gmail.com",
     "url": "https://github.com/darkyzhou"
   },
-  "homepage": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing#readme",
+  "homepage": "https://github.com/darkyzhou/textlint-rule-preset-zh-punctuation#readme",
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
@@ -16,7 +16,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing.git",
-    "directory": "packages/textlint-rule-zh-space-of-pangu"
+    "directory": "packages/textlint-rule-zh-punctuation"
   },
   "bugs": {
     "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"
