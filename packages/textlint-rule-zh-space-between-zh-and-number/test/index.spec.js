@@ -1,5 +1,5 @@
-import { runRuleTest } from '../utils';
-import ruleObject from '../../src/rules/token/space-between-zh-and-number.rule';
+import { runRuleTest } from 'textlint-util-zh';
+import ruleObject from '../src';
 
 const PLAIN_TEXT_CASES = [
   ['今天出去买菜花了 5000 元。', '今天出去买菜花了5000元。', '中文与数字之间需要添加空格', 8, 11],
@@ -9,11 +9,11 @@ const PLAIN_TEXT_CASES = [
   ['5000\n元']
 ];
 
-const MARKDOWN_CASES = [['5000\n元']];
+const MARKDOWN_CASES = ['5000\n元'];
 
 runRuleTest({
   name: 'space-between-zh-and-number',
   tokenBasedRules: [ruleObject],
-  plainTextCases: PLAIN_TEXT_CASES,
-  markdownCases: MARKDOWN_CASES
+  plainTextFixableCases: PLAIN_TEXT_CASES,
+  markdownValidCases: MARKDOWN_CASES
 });

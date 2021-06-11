@@ -1,5 +1,5 @@
-import { runRuleTest } from '../utils';
-import ruleObject from '../../src/rules/node/space-around-inline-code.rule';
+import { runRuleTest } from 'textlint-util-zh';
+import ruleObject from '../src';
 
 const MARKDOWN_CASES = [
   ['测试 `code` 代码', '测试`code`代码', '行内代码块周围需要添加空格', 2, 7],
@@ -10,5 +10,5 @@ const MARKDOWN_CASES = [
 runRuleTest({
   name: 'space-around-inline-code',
   nodeBasedRules: [ruleObject],
-  markdownCases: MARKDOWN_CASES
+  markdownFixableCases: MARKDOWN_CASES
 });

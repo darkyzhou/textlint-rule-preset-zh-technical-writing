@@ -1,7 +1,7 @@
 {
-  "name": "textlint-rule-zh-space-of-pangu",
+  "name": "textlint-rule-zh-no-space-between-zh-and-unit-symbol",
   "version": "0.0.0",
-  "description": "A textlint rule that enforce the usage of the space of pangu in Chinese texts",
+  "description": "A textlint rule for Chinese texts",
   "author": {
     "name": "darkyzhou",
     "email": "darkyoooooo@gmail.com",
@@ -16,13 +16,13 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing.git",
-    "directory": "packages/textlint-rule-zh-space-of-pangu"
+    "directory": "packages/textlint-rule-zh-no-space-between-zh-and-unit-symbol"
   },
   "bugs": {
     "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"
   },
   "scripts": {
-    "build": "babel src --config-file ./babel.config.json --out-dir dist"
+    "build": "babel src --config-file ../../babel.config.json --out-dir dist"
   },
   "dependencies": {
     "core-js": "3.13.1",
