@@ -9,6 +9,6 @@ const MARKDOWN_CASES = [
 
 runRuleTest({
   name: 'space-around-inline-code',
-  nodeBasedRules: [ruleObject],
+  rules: [ruleObject],
   markdownFixableCases: MARKDOWN_CASES
 });

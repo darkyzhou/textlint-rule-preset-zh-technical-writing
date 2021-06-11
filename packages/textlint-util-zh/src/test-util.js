@@ -3,8 +3,7 @@ import { checkNode } from './check-node';
 
 export function runRuleTest({
   name,
-  nodeBasedRules,
-  tokenBasedRules,
+  rules,
   plainTextFixableCases = [],
   plainTextValidCases = [],
   plainTextInvalidCases = [],
@@ -13,7 +12,7 @@ export function runRuleTest({
   markdownInvalidCases = []
 }) {
   const tester = new TextLintTester();
-  const rule = makeLintingRuleWith({ nodeBasedRules, tokenBasedRules });
+  const rule = makeLintingRuleWith(rules);
 
   function parseFixableValidTestCases(ext, cases) {
     return cases.filter(([valid]) => valid).map(([valid]) => ({ ext, text: valid }));
@@ -79,20 +78,15 @@ export function runRuleTest({
   });
 }
 
-function makeLintingRuleWith({ nodeBasedRules = [], tokenBasedRules = [] }) {
+function makeLintingRuleWith(rules) {
   const entry = (context) => {
     const { Syntax } = context;
-    const ruleObjects = {
-      nodeBased: nodeBasedRules,
-      tokenBased: tokenBasedRules
-    };
-
     return {
       [Syntax.Code](node) {
-        checkNode(ruleObjects, context, node);
+        checkNode(rules, context, node);
       },
       [Syntax.Str](node) {
-        checkNode(ruleObjects, context, node);
+        checkNode(rules, context, node);
       }
     };
   };

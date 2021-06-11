@@ -13,7 +13,7 @@ const MARKDOWN_CASES = ['5000\n元'];
 
 runRuleTest({
   name: 'space-between-zh-and-number',
-  tokenBasedRules: [ruleObject],
+  rules: [ruleObject],
   plainTextFixableCases: PLAIN_TEXT_CASES,
   markdownValidCases: MARKDOWN_CASES
 });

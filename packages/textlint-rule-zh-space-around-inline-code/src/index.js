@@ -1,7 +1,7 @@
-import { getTextContent } from 'textlint-util-zh';
-import { REGEX_CHINESE_PUNCTUATION, REGEX_SPACE } from 'textlint-util-zh';
+import { getTextContent, REGEX_CHINESE_PUNCTUATION, REGEX_SPACE } from 'textlint-util-zh';
 
 export default {
+  type: 'node',
   code: (context, node, helper) => {
     const { Syntax, RuleError, fixer } = context;
     const ancestors = helper.getParents(node);

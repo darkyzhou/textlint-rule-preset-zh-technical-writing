@@ -11,7 +11,7 @@ const PLAIN_TEXT_INVALID_CASES = [
 
 runRuleTest({
   name: 'no-redundant-punctuation',
-  tokenBasedRules: [ruleObject],
+  rules: [ruleObject],
   plainTextValidCases: PLAIN_TEXT_VALID_CASES,
   plainTextInvalidCases: PLAIN_TEXT_INVALID_CASES
 });

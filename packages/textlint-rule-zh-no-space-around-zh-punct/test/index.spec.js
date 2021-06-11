@@ -8,6 +8,6 @@ const PLAIN_TEXT_CASES = [
 
 runRuleTest({
   name: 'no-space-around-zh-punct',
-  tokenBasedRules: [ruleObject],
+  rules: [ruleObject],
   plainTextFixableCases: PLAIN_TEXT_CASES
 });

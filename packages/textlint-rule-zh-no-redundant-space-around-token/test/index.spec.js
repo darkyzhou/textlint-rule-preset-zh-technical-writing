@@ -14,7 +14,7 @@ const MARKDOWN_CASES = [
 
 runRuleTest({
   name: 'no-redundant-space-around-token',
-  tokenBasedRules: [ruleObject],
+  rules: [ruleObject],
   plainTextFixableCases: PLAIN_TEXT_CASES,
   markdownValidCases: MARKDOWN_CASES
 });

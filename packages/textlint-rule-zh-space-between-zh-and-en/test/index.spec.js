@@ -13,7 +13,7 @@ const MARKDOWN_CASES = ['刚刚买了一部\niPhone'];
 
 runRuleTest({
   name: 'space-between-zh-and-en',
-  tokenBasedRules: [ruleObject],
+  rules: [ruleObject],
   plainTextFixableCases: PLAIN_TEXT_CASES,
   markdownValidCases: MARKDOWN_CASES
 });

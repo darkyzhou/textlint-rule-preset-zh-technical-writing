@@ -1,21 +1,15 @@
 import { RuleHelper } from 'textlint-rule-helper';
 import { toTokens } from './lexer';
 
-export function checkNode(
-  ruleObjects = {
-    nodeBased: [],
-    tokenBased: []
-  },
-  context,
-  node
-) {
+export function checkNode(rules, context, node) {
   const { report } = context;
   const nodeRaw = node.raw;
   const nodeTypeInLowerCase = node.type.toLowerCase();
   const helper = new RuleHelper(context);
-  const errors = [];
-
   const isCodeNode = node.type.toLowerCase() === 'code';
+  const nodeBasedRules = rules.filter((rule) => rule?.type === 'node');
+  const tokenBasedRules = rules.filter((rule) => !rule.type || rule.type === 'token');
+  const errors = [];
 
   const appendToErrors = (result) => {
     // rule functions may return undefined, a RuleError
@@ -32,7 +26,7 @@ export function checkNode(
     }
   };
 
-  for (const rule of ruleObjects.nodeBased) {
+  for (const rule of nodeBasedRules) {
     if (rule[nodeTypeInLowerCase]) {
       const result = rule[nodeTypeInLowerCase](context, node, helper);
       if (result) {
@@ -45,7 +39,7 @@ export function checkNode(
     const tokens = toTokens(nodeRaw);
     tokens.forEach((currentToken, currentIndex) => {
       const type = currentToken.type;
-      for (const rule of ruleObjects.tokenBased) {
+      for (const rule of tokenBasedRules) {
         const ruleFunction = rule[type];
         if (typeof ruleFunction === 'function') {
           const result = ruleFunction.call(rule, {
