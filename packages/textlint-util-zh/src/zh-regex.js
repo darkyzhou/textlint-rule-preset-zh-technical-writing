@@ -5,7 +5,7 @@ export const REGEX_CHINESE_PUNCTUATION_PAIR_USED = /^[（）〈〉《》「」�
 export const REGEX_CHINESE_PUNCTUATION_PAIR_BEGIN = /^[（〈《「『〔【“‘]$/u;
 export const REGEX_CHINESE_PUNCTUATION_PAIR_END = /^[）〉》」』〕】”’]$/u;
 
-export const REGEX_NUMBER_SYMBOL = /^[℉℃°%]$/u;
+export const REGEX_UNIT_SYMBOL = /^[℉℃°%]$/u;
 
 export const REGEX_NUMBER = /^\d$/;
 

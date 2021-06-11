@@ -3,7 +3,7 @@ import {
   REGEX_CHINESE_PUNCTUATION,
   REGEX_ENGLISH_WORD_CHARACTER,
   REGEX_NUMBER,
-  REGEX_NUMBER_SYMBOL,
+  REGEX_UNIT_SYMBOL,
   REGEX_SPACE
 } from './zh-regex';
 
@@ -13,8 +13,8 @@ function getTokenType(character) {
       return 'zh_char';
     case REGEX_CHINESE_PUNCTUATION.test(character):
       return 'zh_punt';
-    case REGEX_NUMBER_SYMBOL.test(character):
-      return 'number_symbol';
+    case REGEX_UNIT_SYMBOL.test(character):
+      return 'unit_symbol';
     case REGEX_NUMBER.test(character):
       return 'number';
     case REGEX_ENGLISH_WORD_CHARACTER.test(character):

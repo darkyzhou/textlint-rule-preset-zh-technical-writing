@@ -15,7 +15,7 @@ const TOKEN_CASES = [
       ['  ', 9, 10, 'space', false, false],
       ['有', 11, 11, 'zh_char', false, false],
       ['15', 12, 13, 'number', false, false],
-      ['%', 14, 14, 'number_symbol', false, false],
+      ['%', 14, 14, 'unit_symbol', false, false],
       [' ', 15, 15, 'space', false, false],
       ['的', 16, 16, 'zh_char', false, false],
       ['$', 17, 17, 'other', false, false],

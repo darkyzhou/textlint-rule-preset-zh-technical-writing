@@ -18,7 +18,7 @@ export default {
       }
 
       if (currentToken.string.length > 1) {
-        if (previousToken?.type === 'number' && nextToken?.type === 'number_symbol') {
+        if (previousToken?.type === 'number' && nextToken?.type === 'unit_symbol') {
           // let rule no-space-between-zh-and-num-symbol handle this
           return;
         }
