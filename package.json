@@ -1,7 +1,9 @@
 {
   "private": true,
   "name": "textlint-rule-preset-zh-technical-writing",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky install"
+  },
   "workspaces": [
     "packages/*"
   ],
