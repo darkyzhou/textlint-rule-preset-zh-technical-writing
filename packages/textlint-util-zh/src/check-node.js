@@ -49,7 +49,8 @@ export function checkNode(rules, context, node) {
             currentIndex,
             tokens,
             previousToken: tokens[currentIndex - 1], // may be 'undefined'
-            nextToken: tokens[currentIndex + 1] // may be 'undefined'
+            nextToken: tokens[currentIndex + 1], // may be 'undefined'
+            helper
           });
           if (result) {
             appendToErrors(result);
