@@ -28,6 +28,9 @@
     "core-js": "3.13.1",
     "textlint-util-zh": "^0.0.0"
   },
+  "peerDependencies": {
+    "textlint-rule-zh-core": "^0.0.0"
+  },
   "publishConfig": {
     "directory": "dist/src"
   }
