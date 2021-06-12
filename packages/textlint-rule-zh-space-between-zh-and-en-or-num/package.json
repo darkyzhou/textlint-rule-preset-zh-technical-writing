@@ -1,5 +1,5 @@
 {
-  "name": "textlint-rule-zh-space-between-zh-and-number",
+  "name": "textlint-rule-zh-space-between-zh-and-en-or-num",
   "version": "0.0.0",
   "description": "A textlint rule for Chinese texts",
   "author": {
@@ -16,7 +16,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing.git",
-    "directory": "packages/textlint-rule-zh-space-between-zh-and-number"
+    "directory": "packages/textlint-rule-zh-space-between-zh-and-en-or-num"
   },
   "bugs": {
     "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"
