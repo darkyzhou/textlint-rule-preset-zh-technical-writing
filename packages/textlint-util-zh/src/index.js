@@ -3,3 +3,4 @@ export * from './lexer';
 export * from './zh-regex';
 export * from './check-node';
 export * from './test-util';
+export * from './get-adjacent-node';
