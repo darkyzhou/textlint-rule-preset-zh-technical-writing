@@ -1,6 +1,5 @@
 import { getTextContent, REGEX_CHINESE_PUNCTUATION, REGEX_SPACE } from 'textlint-util-zh';
-import { getLeftAdjacentNode } from 'textlint-util-zh';
-import { getRightAdjacentNode } from 'textlint-util-zh/src';
+import { getLeftAdjacentNode, getRightAdjacentNode } from 'textlint-util-zh';
 
 export default {
   type: 'node',
