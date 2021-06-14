@@ -7,8 +7,10 @@ export default {
     const { RuleError, fixer } = context;
     const errors = [];
 
+    const shouldCheckNode = (node) => node && ['Str', 'Delete', 'Emphasis', 'Strong', 'Link'].includes(node.type);
+
     const leftAdjacentNode = getLeftAdjacentNode(helper, node);
-    if (leftAdjacentNode) {
+    if (shouldCheckNode(leftAdjacentNode)) {
       const nodeTextEnd = getTextContent(leftAdjacentNode).slice(-1);
       if (nodeTextEnd !== '\n' && !REGEX_SPACE.test(nodeTextEnd) && !REGEX_CHINESE_PUNCTUATION.test(nodeTextEnd)) {
         errors.push(
@@ -22,7 +24,7 @@ export default {
     }
 
     const rightAdjacentNode = getRightAdjacentNode(helper, node);
-    if (rightAdjacentNode) {
+    if (shouldCheckNode(rightAdjacentNode)) {
       const nodeTextBegin = getTextContent(rightAdjacentNode)[0];
       if (
         nodeTextBegin !== '\n' &&
