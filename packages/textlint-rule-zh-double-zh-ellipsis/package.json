@@ -1,5 +1,5 @@
 {
-  "name": "textlint-rule-zh-no-en-ellipsis",
+  "name": "textlint-rule-zh-double-zh-ellipsis",
   "version": "0.0.0",
   "description": "A textlint rule for Chinese texts",
   "author": {
@@ -16,7 +16,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing.git",
-    "directory": "packages/textlint-rule-zh-no-en-ellipsis"
+    "directory": "packages/textlint-rule-zh-double-zh-ellipsis"
   },
   "bugs": {
     "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"
