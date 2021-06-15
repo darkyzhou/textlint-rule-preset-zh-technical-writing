@@ -1,0 +1,37 @@
+{
+  "name": "textlint-rule-zh-no-en-ellipsis",
+  "version": "0.0.0",
+  "description": "A textlint rule for Chinese texts",
+  "author": {
+    "name": "darkyzhou",
+    "email": "darkyoooooo@gmail.com",
+    "url": "https://github.com/darkyzhou"
+  },
+  "homepage": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing.git",
+    "directory": "packages/textlint-rule-zh-no-en-ellipsis"
+  },
+  "bugs": {
+    "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"
+  },
+  "scripts": {
+    "build": "babel src --config-file ../../babel.config.json --out-dir dist"
+  },
+  "dependencies": {
+    "core-js": "3.13.1",
+    "textlint-util-zh": "^0.0.0"
+  },
+  "peerDependencies": {
+    "textlint-rule-zh-core": "^0.0.0"
+  },
+  "publishConfig": {
+    "directory": "dist/src"
+  }
+}
