@@ -5,7 +5,7 @@ import {
 } from 'textlint-util-zh';
 
 const PAIR_MAPPING = {
-  '）': '（',
+  ['）']: '（',
   ['〉']: '〈',
   ['》']: '《',
   ['」']: '「',
