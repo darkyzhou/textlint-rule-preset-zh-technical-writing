@@ -26,6 +26,8 @@ function getAdjacentNode(isLeft, helper, node) {
     if (!isLeft && containingNodeIndex < ancestorChildren.length - 1) {
       return ancestorChildren[containingNodeIndex + 1];
     }
+
+    containingNode = ancestorNode;
   }
 
   return null;

@@ -28,6 +28,9 @@
     "core-js": "3.13.1",
     "textlint-rule-helper": "^2.2.0"
   },
+  "devDependencies": {
+    "textlint": "^12.0.0"
+  },
   "publishConfig": {
     "directory": "dist"
   }
