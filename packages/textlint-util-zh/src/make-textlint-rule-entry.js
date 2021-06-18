@@ -1,12 +1,29 @@
 import { RuleHelper } from 'textlint-rule-helper';
 import { toTokens } from './lexer';
 
-export function checkNode(rules, context, node) {
+export function markTextLintRuleEntry(rules) {
+  const nodeBasedRules = rules.filter((rule) => rule?.type === 'node');
+  const nodeTypes = ['Code', 'Str', ...nodeBasedRules.map((rule) => Object.keys(rule)).filter((key) => key !== 'type')];
+  const uniqueNodeTypes = [...new Set(nodeTypes)];
+  const entry = (context) =>
+    Object.fromEntries(
+      uniqueNodeTypes.map((type) => [
+        type,
+        (node) => {
+          checkNode(rules, context, node);
+        }
+      ])
+    );
+  return {
+    linter: entry,
+    fixer: entry
+  };
+}
+
+function checkNode(rules, context, node) {
   const { report } = context;
-  const nodeRaw = node.raw;
-  const nodeTypeInLowerCase = node.type.toLowerCase();
+  const { raw, type } = node;
   const helper = new RuleHelper(context);
-  const isCodeNode = node.type.toLowerCase() === 'code';
   const nodeBasedRules = rules.filter((rule) => rule?.type === 'node');
   const tokenBasedRules = rules.filter((rule) => !rule.type || rule.type === 'token');
   const errors = [];
@@ -27,16 +44,16 @@ export function checkNode(rules, context, node) {
   };
 
   for (const rule of nodeBasedRules) {
-    if (rule[nodeTypeInLowerCase]) {
-      const result = rule[nodeTypeInLowerCase](context, node, helper);
+    if (rule[type]) {
+      const result = rule[type](context, node, helper);
       if (result) {
         appendToErrors(result);
       }
     }
   }
 
-  if (!isCodeNode) {
-    const tokens = toTokens(nodeRaw);
+  if (type === 'Str') {
+    const tokens = toTokens(raw);
     tokens.forEach((currentToken, currentIndex) => {
       const type = currentToken.type;
       for (const rule of tokenBasedRules) {

@@ -1,5 +1,5 @@
 import TextLintTester from 'textlint-tester';
-import { checkNode } from './check-node';
+import { markTextLintRuleEntry } from './make-textlint-rule-entry';
 
 export function runRuleTest({
   name,
@@ -12,7 +12,7 @@ export function runRuleTest({
   markdownInvalidCases = []
 }) {
   const tester = new TextLintTester();
-  const rule = makeLintingRuleWith(rules);
+  const rule = markTextLintRuleEntry(rules);
 
   function parseFixableValidTestCases(ext, cases) {
     return cases.filter(([valid]) => valid).map(([valid]) => ({ ext, text: valid }));
@@ -76,24 +76,6 @@ export function runRuleTest({
       });
     });
   });
-}
-
-function makeLintingRuleWith(rules) {
-  const entry = (context) => {
-    const { Syntax } = context;
-    return {
-      [Syntax.Code](node) {
-        checkNode(rules, context, node);
-      },
-      [Syntax.Str](node) {
-        checkNode(rules, context, node);
-      }
-    };
-  };
-  return {
-    linter: entry,
-    fixer: entry
-  };
 }
 
 function toTesterErrorObject(caseErrors) {
