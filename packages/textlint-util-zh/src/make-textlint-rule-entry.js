@@ -3,17 +3,14 @@ import { toTokens } from './lexer';
 
 export function markTextLintRuleEntry(rules) {
   const nodeBasedRules = rules.filter((rule) => rule?.type === 'node');
-  const nodeTypes = ['Code', 'Str', ...nodeBasedRules.map((rule) => Object.keys(rule)).filter((key) => key !== 'type')];
+  const nodeTypes = [
+    'Code',
+    'Str',
+    ...nodeBasedRules.map((rule) => Object.keys(rule).filter((key) => key !== 'type')).flat()
+  ];
   const uniqueNodeTypes = [...new Set(nodeTypes)];
   const entry = (context) =>
-    Object.fromEntries(
-      uniqueNodeTypes.map((type) => [
-        type,
-        (node) => {
-          checkNode(rules, context, node);
-        }
-      ])
-    );
+    Object.fromEntries(uniqueNodeTypes.map((type) => [type, (node) => checkNode(rules, context, node)]));
   return {
     linter: entry,
     fixer: entry
