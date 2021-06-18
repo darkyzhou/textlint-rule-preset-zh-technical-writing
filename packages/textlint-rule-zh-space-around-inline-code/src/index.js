@@ -3,7 +3,7 @@ import { getLeftAdjacentNode, getRightAdjacentNode } from 'textlint-util-zh';
 
 export default {
   type: 'node',
-  code: (context, node, helper) => {
+  Code: (context, node, helper) => {
     const { RuleError, fixer } = context;
     const errors = [];
 
