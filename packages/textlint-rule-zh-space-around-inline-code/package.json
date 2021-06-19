@@ -1,6 +1,6 @@
 {
   "name": "textlint-rule-zh-space-around-inline-code",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A textlint rule for Chinese texts",
   "author": {
     "name": "darkyzhou",
@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "core-js": "3.13.1",
-    "textlint-util-zh": "^0.0.0"
+    "textlint-util-zh": "^0.0.1"
   },
   "peerDependencies": {
     "textlint-rule-zh-core": "^0.0.0"

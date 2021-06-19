@@ -1,6 +1,6 @@
 {
   "name": "textlint-util-zh",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A utility package for textlint-rule-zh-* packages",
   "author": {
     "name": "darkyzhou",
