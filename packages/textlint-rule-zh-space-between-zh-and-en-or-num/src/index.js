@@ -22,7 +22,7 @@ function check({ textLintCtx, node, currentToken, previousToken, nextToken, help
   if (previousToken?.type === 'zh_char') {
     errors.push(
       new RuleError(message, {
-        index: currentToken.beginIndex,
+        index: currentToken.beginIndex - 1,
         fix: fixer.insertTextBeforeRange([currentToken.beginIndex, currentToken.endIndex + 1], ' ')
       })
     );
@@ -31,7 +31,7 @@ function check({ textLintCtx, node, currentToken, previousToken, nextToken, help
   if (nextToken?.type === 'zh_char') {
     errors.push(
       new RuleError(message, {
-        index: currentToken.endIndex,
+        index: currentToken.endIndex + 1,
         fix: fixer.insertTextAfterRange([currentToken.beginIndex, currentToken.endIndex + 1], ' ')
       })
     );
@@ -46,7 +46,7 @@ function check({ textLintCtx, node, currentToken, previousToken, nextToken, help
       if (nodeTextEnd !== '\n' && !REGEX_SPACE.test(nodeTextEnd) && !REGEX_CHINESE_PUNCTUATION.test(nodeTextEnd)) {
         errors.push(
           new RuleError(message, {
-            index: currentToken.beginIndex,
+            index: currentToken.beginIndex - 1,
             fix: fixer.insertTextAfter(leftAdjacentNode, ' ')
           })
         );
@@ -65,7 +65,7 @@ function check({ textLintCtx, node, currentToken, previousToken, nextToken, help
       ) {
         errors.push(
           new RuleError(message, {
-            index: currentToken.endIndex,
+            index: currentToken.endIndex + 1,
             fix: fixer.insertTextBefore(rightAdjacentNode, ' ')
           })
         );
