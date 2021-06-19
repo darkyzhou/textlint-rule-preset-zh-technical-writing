@@ -24,5 +24,10 @@ export default {
     ]),
     terminology, // TODO: add more terminology
     noInvalidControlCharacter
+  },
+  rulesConfig: {
+    zhRuleSeries: true,
+    terminology: true,
+    noInvalidControlCharacter: true
   }
 };

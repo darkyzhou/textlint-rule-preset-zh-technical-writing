@@ -1,4 +1,4 @@
-import { runRuleTest } from 'textlint-util-zh';
+import { runRuleTest } from 'textlint-test-util-zh';
 import ruleObject from '../src';
 
 const MARKDOWN_CASES = [

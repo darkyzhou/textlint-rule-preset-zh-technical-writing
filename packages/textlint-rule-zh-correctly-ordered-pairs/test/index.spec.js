@@ -1,4 +1,4 @@
-import { runRuleTest } from 'textlint-util-zh';
+import { runRuleTest } from 'textlint-test-util-zh';
 import ruleObject from '../src';
 
 const PLAIN_TEXT_VALID_CASES = ['“测试‘Test’测试”', '《测试〈测试〉》'];

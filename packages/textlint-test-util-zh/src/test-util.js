@@ -1,5 +1,5 @@
 import TextLintTester from 'textlint-tester';
-import { markTextLintRuleEntry } from './make-textlint-rule-entry';
+import { markTextLintRuleEntry } from 'textlint-util-zh';
 
 export function runRuleTest({
   name,

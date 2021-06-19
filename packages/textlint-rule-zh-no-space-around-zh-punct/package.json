@@ -27,8 +27,5 @@
   },
   "dependencies": {
     "core-js": "3.13.1"
-  },
-  "peerDependencies": {
-    "textlint-rule-zh-core": "^0.0.0"
   }
 }
