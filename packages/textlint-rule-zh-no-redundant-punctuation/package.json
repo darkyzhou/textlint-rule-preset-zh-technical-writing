@@ -31,8 +31,5 @@
   },
   "peerDependencies": {
     "textlint-rule-zh-core": "^0.0.0"
-  },
-  "publishConfig": {
-    "directory": "dist/src"
   }
 }

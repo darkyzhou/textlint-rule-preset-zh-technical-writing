@@ -31,8 +31,5 @@
   },
   "peerDependencies": {
     "textlint": "^12.0.0"
-  },
-  "publishConfig": {
-    "directory": "dist/src"
   }
 }
