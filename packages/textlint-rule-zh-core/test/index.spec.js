@@ -8,16 +8,16 @@ describe('core', function () {
       it('should throw an error with `{}` input', function () {
         assert.throws(() => withRules({}), /invalid rules: an array is required/);
       });
-      it('should throw an Error with `null` input', function () {
+      it('should throw an error with `null` input', function () {
         assert.throws(() => withRules(null), /invalid rules: an array is required/);
       });
-      it('should throw an Error with `undefined` input', function () {
+      it('should throw an error with `undefined` input', function () {
         assert.throws(() => withRules(undefined), /invalid rules: an array is required/);
       });
-      it('should throw an Error with `() => {}` input', function () {
+      it('should throw an error with `() => {}` input', function () {
         assert.throws(() => withRules(() => {}), /invalid rules: an array is required/);
       });
-      it('should throw an Error with `[() => {}]` input', function () {
+      it('should throw an error with `[() => {}]` input', function () {
         assert.throws(() => withRules([() => {}]), /invalid rule config:/);
       });
     });

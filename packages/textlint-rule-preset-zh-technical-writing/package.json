@@ -1,0 +1,47 @@
+{
+  "name": "textlint-rule-preset-zh-technical-writing",
+  "version": "0.0.0",
+  "description": "A textlint rule preset for technical writing in Chinese",
+  "author": {
+    "name": "darkyzhou",
+    "email": "darkyoooooo@gmail.com",
+    "url": "https://github.com/darkyzhou"
+  },
+  "homepage": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing#readme",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing.git",
+    "directory": "packages/textlint-rule-preset-zh-technical-writing"
+  },
+  "bugs": {
+    "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"
+  },
+  "scripts": {
+    "build": "babel src --config-file ../../babel.config.json --out-dir dist"
+  },
+  "dependencies": {
+    "@textlint-rule/textlint-rule-no-invalid-control-character": "^2.0.0",
+    "core-js": "3.13.1",
+    "textlint-rule-terminology": "^2.1.5",
+    "textlint-rule-zh-core": "^0.0.0",
+    "textlint-rule-zh-correctly-ordered-pairs": "^0.0.0",
+    "textlint-rule-zh-double-zh-ellipsis": "^0.0.0",
+    "textlint-rule-zh-no-redundant-punctuation": "^0.0.0",
+    "textlint-rule-zh-no-redundant-space-around-token": "^0.0.0",
+    "textlint-rule-zh-no-space-around-zh-punct": "^0.0.0",
+    "textlint-rule-zh-no-space-between-zh-and-unit-symbol": "^0.0.0",
+    "textlint-rule-zh-space-around-inline-code": "^0.0.0",
+    "textlint-rule-zh-space-between-zh-and-en-or-num": "^0.0.0"
+  },
+  "peerDependencies": {
+    "textlint": "^12.0.0"
+  },
+  "publishConfig": {
+    "directory": "dist/src"
+  }
+}

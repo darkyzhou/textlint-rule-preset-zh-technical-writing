@@ -4,7 +4,8 @@
   "scripts": {
     "prepare": "npm-run-all init-husky setup-precommit-hook",
     "init-husky": "husky install",
-    "setup-precommit-hook": "husky add .husky/pre-commit \"yarn lint-staged\""
+    "setup-precommit-hook": "husky add .husky/pre-commit \"yarn lint-staged\"",
+    "build:watch": "lerna run --parallel build:watch"
   },
   "workspaces": [
     "packages/*"
