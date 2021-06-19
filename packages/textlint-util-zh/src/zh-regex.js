@@ -9,6 +9,6 @@ export const REGEX_UNIT_SYMBOL = /^[℉℃°%]$/u;
 
 export const REGEX_NUMBER = /^\d$/;
 
-export const REGEX_ENGLISH_WORD_CHARACTER = /^[\w-\/]$/i;
+export const REGEX_ENGLISH_WORD_CHARACTER = /^[\w-]$/i;
 
 export const REGEX_SPACE = /^\s$/;
