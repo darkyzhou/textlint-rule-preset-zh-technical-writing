@@ -1,6 +1,6 @@
 {
   "name": "textlint-test-util-zh",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A utility package for textlint-rule-zh series packages",
   "author": {
     "name": "darkyzhou",
@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "core-js": "3.13.1",
-    "textlint-util-zh": "^0.0.1"
+    "textlint-util-zh": "^0.0.2"
   },
   "devDependencies": {
     "textlint": "^12.0.0"
