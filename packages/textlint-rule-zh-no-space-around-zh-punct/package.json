@@ -8,6 +8,18 @@
     "url": "https://github.com/darkyzhou"
   },
   "homepage": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing#readme",
+  "keywords": [
+    "textlint",
+    "preset",
+    "chinese",
+    "lint",
+    "rule",
+    "writing"
+  ],
+  "engines": {
+    "node": ">=6.0.0",
+    "npm": ">=5.0.0"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "files": [
