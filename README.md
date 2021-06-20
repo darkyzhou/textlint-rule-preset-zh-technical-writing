@@ -88,7 +88,7 @@ WIP，等我几天。
 
 ### 编译
 
-本项目使用 [babel](https://github.com/babel/babel) 来转换源码中的 ES6 模块语法，以及嵌入 Node.js v6.0.0 的 polyfill（基于 [core-js](https://github.com/zloirock/core-js)）。
+本项目使用 [babel](https://github.com/babel/babel) 来转换源码中的 ES6 模块语法，以及嵌入 polyfill（基于 [core-js](https://github.com/zloirock/core-js)）。
 
 同时，本项目使用 [lerna](https://github.com/lerna/lerna) 管理，因此在本地测试时，`packages` 文件夹里的包之间的依赖，是通过在项目根目录下的 `node_modules` 文件夹里的软链接来实现的。
 
