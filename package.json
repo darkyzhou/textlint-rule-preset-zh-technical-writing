@@ -8,7 +8,8 @@
     "setup-precommit-hook": "husky add .husky/pre-commit \"yarn lint-staged\"",
     "build": "lerna run --parallel build",
     "build:watch": "lerna run --parallel build:watch",
-    "prepare": "npm-run-all build"
+    "prepare": "npm-run-all build",
+    "test": "mocha -r @babel/register packages/**/test/**/*.spec.js"
   },
   "workspaces": [
     "packages/*"

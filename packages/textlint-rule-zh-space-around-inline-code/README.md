@@ -18,6 +18,8 @@
 我们应该使用 `+new Date()` 而不是 `Date.now()` 来让我们的代码变得丑陋无比。
 
 `import React from 'react';` 在 React v17 之后不再必要了。
+
+值得一提的是，`inline code` 周围如果是标点符号，那么不需要加空格。
 ```
 
 它们显示出来的效果：
@@ -25,6 +27,8 @@
 我们应该使用 `+new Date()` 而不是 `Date.now()` 来让我们的代码变得丑陋无比。
 
 `import React from 'react';` 在 React v17 之后不再必要了。
+
+值得一提的是，`inline code` 周围如果是标点符号，那么不需要加空格。
 
 ### 违反规则的例子
 

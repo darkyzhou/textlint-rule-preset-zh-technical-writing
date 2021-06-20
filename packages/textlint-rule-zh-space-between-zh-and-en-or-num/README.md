@@ -1,6 +1,6 @@
 # textlint-rule-zh-space-between-zh-and-en-or-num
 
-[textlint-rule-preset-zh-technical-writing](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing) 提供的适用于中文技术文档写作的 [textlint](https://github.com/textlint/textlint) 规则，用于检测并修复 Markdown 文本中行内代码周围缺失的空格。
+[textlint-rule-preset-zh-technical-writing](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing) 提供的适用于中文技术文档写作的 [textlint](https://github.com/textlint/textlint) 规则，用于检测并修复汉字与英文、数字之间缺失的空格。
 
 ## 规则介绍
 
@@ -18,6 +18,8 @@
 我擅长 JavaScript、TypeScript、Python 等英文单词的拼写。
 
 单身了这么多年，我还能找到 girlfriend 吗？
+
+注意，english words 周围如果是标点符号，那么不需要加空格。
 ```
 
 ### 违反规则的例子
