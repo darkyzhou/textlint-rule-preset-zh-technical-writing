@@ -17,7 +17,7 @@
     "writing"
   ],
   "engines": {
-    "node": ">=6.0.0",
+    "node": ">=10.0.0",
     "npm": ">=5.0.0"
   },
   "license": "MIT",
