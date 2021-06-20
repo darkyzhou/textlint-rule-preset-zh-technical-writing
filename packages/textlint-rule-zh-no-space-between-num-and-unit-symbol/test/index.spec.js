@@ -7,7 +7,7 @@ const PLAIN_TEXT_CASES = [
 ];
 
 runRuleTest({
-  name: 'no-space-between-zh-and-unit-symbol',
+  name: 'no-space-between-num-and-unit-symbol',
   rules: [ruleObject],
   plainTextFixableCases: PLAIN_TEXT_CASES
 });

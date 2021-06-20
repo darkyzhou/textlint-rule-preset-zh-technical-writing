@@ -1,11 +1,3 @@
-# `textlint-util-zh`
+# textlint-util-zh
 
-> TODO: description
-
-## Usage
-
-```
-const textlintUtilZh = require('textlint-util-zh');
-
-// TODO: DEMONSTRATE API
-```
+给 [textlint-zh-rule 系列规则](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages)使用的工具库。

@@ -1,17 +1,3 @@
-# `textlint-test-util-zh`
+# textlint-test-util-zh
 
-Utility packages for testing textlint-rule-zh series packages
-
-## Usage
-
-```javascript
-const { runRuleTest } = require('textlint-test-util-zh');
-
-const testRule = {}; // your rule object here
-
-runRuleTest({
-  name: 'test-name',
-  rules: [testRule],
-  plainTextFixableCases: ['test']
-});
-```
+给 [textlint-zh-rule 系列规则](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages)使用的测试工具库。

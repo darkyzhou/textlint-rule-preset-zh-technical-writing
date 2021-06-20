@@ -46,7 +46,7 @@
     "textlint-rule-zh-no-redundant-punctuation": "^0.0.1",
     "textlint-rule-zh-no-redundant-space-around-token": "^0.0.1",
     "textlint-rule-zh-no-space-around-zh-punct": "^0.0.1",
-    "textlint-rule-zh-no-space-between-zh-and-unit-symbol": "^0.0.1",
+    "textlint-rule-zh-no-space-between-num-and-unit-symbol": "^0.0.1",
     "textlint-rule-zh-space-around-inline-code": "^0.0.1",
     "textlint-rule-zh-space-between-zh-and-en-or-num": "^0.0.1"
   },

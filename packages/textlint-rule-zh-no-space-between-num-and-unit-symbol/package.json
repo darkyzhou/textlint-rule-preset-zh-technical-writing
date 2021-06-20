@@ -1,5 +1,5 @@
 {
-  "name": "textlint-rule-zh-no-space-between-zh-and-unit-symbol",
+  "name": "textlint-rule-zh-no-space-between-num-and-unit-symbol",
   "version": "0.0.1",
   "description": "A textlint rule for Chinese texts",
   "author": {
@@ -28,7 +28,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing.git",
-    "directory": "packages/textlint-rule-zh-no-space-between-zh-and-unit-symbol"
+    "directory": "packages/textlint-rule-zh-no-space-between-num-and-unit-symbol"
   },
   "bugs": {
     "url": "https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues"

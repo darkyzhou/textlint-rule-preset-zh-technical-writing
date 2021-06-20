@@ -4,7 +4,7 @@ import doubleZhEllipsis from 'textlint-rule-zh-double-zh-ellipsis';
 import noRedundantPunctuation from 'textlint-rule-zh-no-redundant-punctuation';
 import noRedundantSpaceAroundToken from 'textlint-rule-zh-no-redundant-space-around-token';
 import noSpaceAroundZhPunct from 'textlint-rule-zh-no-space-around-zh-punct';
-import noSpaceBetweenZhAndUnitSymbol from 'textlint-rule-zh-no-space-between-zh-and-unit-symbol';
+import noSpaceBetweenNumAndUnitSymbol from 'textlint-rule-zh-no-space-between-num-and-unit-symbol';
 import spaceAroundInlineCode from 'textlint-rule-zh-space-around-inline-code';
 import spaceBetweenZhAndEnOrNum from 'textlint-rule-zh-space-between-zh-and-en-or-num';
 import terminology from 'textlint-rule-terminology';
@@ -18,7 +18,7 @@ export default {
       noRedundantPunctuation,
       noRedundantSpaceAroundToken,
       noSpaceAroundZhPunct,
-      noSpaceBetweenZhAndUnitSymbol,
+      noSpaceBetweenNumAndUnitSymbol,
       spaceAroundInlineCode,
       spaceBetweenZhAndEnOrNum
     ]),
