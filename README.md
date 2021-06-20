@@ -17,7 +17,7 @@
 
 本项目需要：
 
-- v6.0.0 及以上版本的 Node.js（如果使用 Node.js 运行）
+- v12.20.0 及以上版本的 Node.js（如果使用 Node.js 运行）
 - v5.0.0 及以上的 npm
 - v12.0.0 以上的 textlint
 
