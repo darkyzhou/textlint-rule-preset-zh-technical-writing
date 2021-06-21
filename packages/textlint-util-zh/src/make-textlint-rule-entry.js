@@ -64,7 +64,8 @@ function checkNode(rules, context, node) {
             tokens,
             previousToken: tokens[currentIndex - 1], // may be 'undefined'
             nextToken: tokens[currentIndex + 1], // may be 'undefined'
-            helper
+            helper,
+            currentErrors: errors
           });
           if (result) {
             appendToErrors(result);

@@ -15,41 +15,41 @@ export default {
   }
 };
 
-function check({ textLintCtx, node, currentToken, previousToken, nextToken, helper }, message) {
+function check({ textLintCtx, node, currentToken, previousToken, nextToken, helper, currentErrors }, message) {
   const { fixer, RuleError } = textLintCtx;
   const errors = [];
 
   if (previousToken?.type === 'zh_char') {
-    errors.push(
-      new RuleError(message, {
-        index: currentToken.beginIndex - 1,
+    const index = currentToken.beginIndex - 1;
+    const errorIndex = currentErrors.findIndex((error) => error.index === index);
+    if (errorIndex >= 0) {
+      currentErrors[errorIndex].fix = fixer.replaceTextRange(
+        [previousToken.beginIndex, previousToken.endIndex + 1],
+        ` ${previousToken.string} `
+      );
+    } else {
+      errors.push({
+        message,
+        index,
         fix: fixer.insertTextBeforeRange([currentToken.beginIndex, currentToken.endIndex + 1], ' ')
-      })
-    );
+      });
+    }
   }
 
   if (nextToken?.type === 'zh_char') {
-    errors.push(
-      new RuleError(message, {
-        index: currentToken.endIndex + 1,
-        fix: fixer.insertTextAfterRange([currentToken.beginIndex, currentToken.endIndex + 1], ' ')
-      })
-    );
+    errors.push({
+      message,
+      index: currentToken.endIndex + 1,
+      fix: fixer.insertTextAfterRange([currentToken.beginIndex, currentToken.endIndex + 1], ' ')
+    });
   }
-
-  const shouldCheckNode = (node) => node && ['Str', 'Delete', 'Emphasis', 'Strong', 'Link'].includes(node.type);
 
   if (!previousToken) {
     const leftAdjacentNode = getLeftAdjacentNode(helper, node);
     if (shouldCheckNode(leftAdjacentNode)) {
-      const nodeTextEnd = getTextContent(leftAdjacentNode).slice(-1);
-      if (nodeTextEnd !== '\n' && !REGEX_SPACE.test(nodeTextEnd) && !REGEX_CHINESE_PUNCTUATION.test(nodeTextEnd)) {
-        errors.push(
-          new RuleError(message, {
-            index: currentToken.beginIndex - 1,
-            fix: fixer.insertTextAfter(leftAdjacentNode, ' ')
-          })
-        );
+      const endChar = getTextContent(leftAdjacentNode).slice(-1);
+      if (checkCharacter(endChar)) {
+        errors.push({ message, index: currentToken.beginIndex - 1, fix: fixer.insertTextAfter(leftAdjacentNode, ' ') });
       }
     }
   }
@@ -57,21 +57,20 @@ function check({ textLintCtx, node, currentToken, previousToken, nextToken, help
   if (!nextToken) {
     const rightAdjacentNode = getRightAdjacentNode(helper, node);
     if (shouldCheckNode(rightAdjacentNode)) {
-      const nodeTextBegin = getTextContent(rightAdjacentNode)[0];
-      if (
-        nodeTextBegin !== '\n' &&
-        !REGEX_SPACE.test(nodeTextBegin) &&
-        !REGEX_CHINESE_PUNCTUATION.test(nodeTextBegin)
-      ) {
-        errors.push(
-          new RuleError(message, {
-            index: currentToken.endIndex + 1,
-            fix: fixer.insertTextBefore(rightAdjacentNode, ' ')
-          })
-        );
+      const beginChar = getTextContent(rightAdjacentNode)[0];
+      if (checkCharacter(beginChar)) {
+        errors.push({ message, index: currentToken.endIndex + 1, fix: fixer.insertTextBefore(rightAdjacentNode, ' ') });
       }
     }
   }
 
-  return errors;
+  return errors.map(({ message, index, fix }) => new RuleError(message, { index, fix }));
+}
+
+function shouldCheckNode(node) {
+  return node && ['Str', 'Delete', 'Emphasis', 'Strong', 'Link'].includes(node.type);
+}
+
+function checkCharacter(char) {
+  return char !== '\n' && !REGEX_SPACE.test(char) && !REGEX_CHINESE_PUNCTUATION.test(char);
 }

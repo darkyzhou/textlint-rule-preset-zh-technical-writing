@@ -3,8 +3,8 @@ import {
   REGEX_CHINESE_PUNCTUATION,
   REGEX_ENGLISH_WORD_CHARACTER,
   REGEX_NUMBER,
-  REGEX_UNIT_SYMBOL,
-  REGEX_SPACE
+  REGEX_SPACE,
+  REGEX_UNIT_SYMBOL
 } from './zh-regex';
 
 function getTokenType(character) {
@@ -32,7 +32,7 @@ export function toTokens(string) {
   }
 
   const tokens = [];
-  let lastToken;
+  let prevToken;
   let index = -1;
 
   for (const character of string) {
@@ -40,8 +40,8 @@ export function toTokens(string) {
 
     const tokenType = getTokenType(character);
 
-    if (!lastToken) {
-      lastToken = {
+    if (!prevToken) {
+      prevToken = {
         string: character,
         beginIndex: index,
         endIndex: index,
@@ -49,13 +49,13 @@ export function toTokens(string) {
         first: true,
         last: index === string.length - 1
       };
-    } else if (lastToken.type === tokenType) {
-      lastToken.string += character;
-      lastToken.endIndex++;
-      lastToken.last = lastToken.endIndex === string.length - 1;
+    } else if (shouldAddToPrevToken(prevToken.type, tokenType)) {
+      prevToken.string += character;
+      prevToken.endIndex++;
+      prevToken.last = prevToken.endIndex === string.length - 1;
     } else {
-      tokens.push(lastToken);
-      lastToken = {
+      tokens.push(prevToken);
+      prevToken = {
         string: character,
         beginIndex: index,
         endIndex: index,
@@ -66,9 +66,17 @@ export function toTokens(string) {
     }
 
     if (index === string.length - 1) {
-      tokens.push(lastToken);
+      tokens.push(prevToken);
     }
   }
 
   return tokens;
+}
+
+function shouldAddToPrevToken(prevType, currentType) {
+  return (
+    prevType === currentType ||
+    (prevType === 'en_char' && currentType === 'number') ||
+    (prevType === 'number' && currentType === 'en_char')
+  );
 }
