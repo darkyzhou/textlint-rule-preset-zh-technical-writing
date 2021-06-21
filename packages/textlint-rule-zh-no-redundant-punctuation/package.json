@@ -1,6 +1,6 @@
 {
   "name": "textlint-rule-zh-no-redundant-punctuation",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A textlint rule for Chinese texts",
   "author": {
     "name": "darkyzhou",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "core-js": "3.13.1",
-    "textlint-util-zh": "^0.0.2"
+    "textlint-util-zh": "^0.0.3"
   }
 }

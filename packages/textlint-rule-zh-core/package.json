@@ -1,6 +1,6 @@
 {
   "name": "textlint-rule-zh-core",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Core package for textlint-rule-zh rule series",
   "author": {
     "name": "darkyzhou",
@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "core-js": "3.13.1",
-    "textlint-util-zh": "^0.0.2"
+    "textlint-util-zh": "^0.0.3"
   }
 }
