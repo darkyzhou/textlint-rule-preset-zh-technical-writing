@@ -74,9 +74,5 @@ export function toTokens(string) {
 }
 
 function shouldAddToPrevToken(prevType, currentType) {
-  return (
-    prevType === currentType ||
-    (prevType === 'en_char' && currentType === 'number') ||
-    (prevType === 'number' && currentType === 'en_char')
-  );
+  return prevType === currentType || (prevType === 'en_char' && currentType === 'number');
 }
