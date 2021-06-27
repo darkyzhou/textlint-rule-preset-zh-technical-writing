@@ -2,7 +2,7 @@
 <p align="center">
   <img alt="npm" src="https://img.shields.io/npm/v/textlint-rule-preset-zh-technical-writing">
   <a href="https://lerna.js.org/"><img alt="Maintained with lerna" src="https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg"></a>
-  <a href="http://commitizen.github.io/cz-cli/"><img alt="Commitizen friendly" src="https://img.shields.io/badge/commitizen-friendly-brightgreen.svg"></a>
+  <img alt="Test passing" src="https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/actions/workflows/test.yml/badge.svg">
   <img alt="npm" src="https://img.shields.io/npm/dw/textlint-rule-preset-zh-technical-writing">
   <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/darkyzhou/textlint-rule-preset-zh-technical-writing?style=social">
 </p>
@@ -23,23 +23,23 @@
 
 ## 规则列表
 
-目前，本预设方案包含以下的规则，其中标有 
+目前，本预设方案包含以下的规则，其中标有
 [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) 的为可以进行自动修复的规则。
 
 > 如果你有其他规则的需求，欢迎[发表 issue](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/issues/new)。
 
-| 名称                                                         | 介绍                                                         |                                                              |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [textlint-rule-zh-correctly-ordered-pairs](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-correctly-ordered-pairs) | 检测像引号、书名号这些需要成对按顺序使用的标点符号在文本中是否被正确使用 |                                                              |
-| [textlint-rule-zh-double-zh-ellipsis](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-double-zh-ellipsis) | 检测文本中使用的省略号是否符合规范                           | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
-| [textlint-rule-zh-no-redundant-punctuation](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-no-redundant-punctuation) | 检测文本中是否出现了多余的标点符号                           |                                                              |
-| [textlint-rule-zh-no-redundant-space-around-token](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-no-redundant-space-around-token) | 检测并修复文本中多余的空格                                   | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
-| [textlint-rule-zh-no-space-around-zh-punct](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-no-space-around-zh-punct) | 检测并修复文本中标点符号周围多余的空格                       | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
-| [textlint-rule-zh-no-space-between-num-and-unit-symbol](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-no-space-between-num-and-unit-symbol) | 检测并修复文本中数字和单位符号之间多余的空格                 | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
-| [textlint-rule-zh-space-around-inline-code](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-space-around-inline-code) | 检测并修复 Markdown 文本中行内代码周围缺失的空格             | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
-| [textlint-rule-zh-space-between-zh-and-en-or-num](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-space-between-zh-and-en-or-num) | 检测并修复汉字与英文、数字之间缺失的空格                     | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
-| [textlint-rule-terminology](https://github.com/sapegin/textlint-rule-terminology) | 检测并修复误用的英文术语                                     | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
-| [textlint-rule-no-invalid-control-character](https://github.com/textlint-rule/textlint-rule-no-invalid-control-character) | 检测并修复文本中出现的无效的控制字符                         | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
+| 名称                                                                                                                                                                                                     | 介绍                                                                     |                                                                                                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| [textlint-rule-zh-correctly-ordered-pairs](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-correctly-ordered-pairs)                           | 检测像引号、书名号这些需要成对按顺序使用的标点符号在文本中是否被正确使用 |                                                                                                                       |
+| [textlint-rule-zh-double-zh-ellipsis](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-double-zh-ellipsis)                                     | 检测文本中使用的省略号是否符合规范                                       | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
+| [textlint-rule-zh-no-redundant-punctuation](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-no-redundant-punctuation)                         | 检测文本中是否出现了多余的标点符号                                       |                                                                                                                       |
+| [textlint-rule-zh-no-redundant-space-around-token](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-no-redundant-space-around-token)           | 检测并修复文本中多余的空格                                               | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
+| [textlint-rule-zh-no-space-around-zh-punct](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-no-space-around-zh-punct)                         | 检测并修复文本中标点符号周围多余的空格                                   | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
+| [textlint-rule-zh-no-space-between-num-and-unit-symbol](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-no-space-between-num-and-unit-symbol) | 检测并修复文本中数字和单位符号之间多余的空格                             | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
+| [textlint-rule-zh-space-around-inline-code](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-space-around-inline-code)                         | 检测并修复 Markdown 文本中行内代码周围缺失的空格                         | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
+| [textlint-rule-zh-space-between-zh-and-en-or-num](https://github.com/darkyzhou/textlint-rule-preset-zh-technical-writing/tree/main/packages/textlint-rule-zh-space-between-zh-and-en-or-num)             | 检测并修复汉字与英文、数字之间缺失的空格                                 | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
+| [textlint-rule-terminology](https://github.com/sapegin/textlint-rule-terminology)                                                                                                                        | 检测并修复误用的英文术语                                                 | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
+| [textlint-rule-no-invalid-control-character](https://github.com/textlint-rule/textlint-rule-no-invalid-control-character)                                                                                | 检测并修复文本中出现的无效的控制字符                                     | [![textlint rule](https://img.shields.io/badge/textlint-fixable-green.svg?style=social)](https://textlint.github.io/) |
 
 ## 使用方法
 
@@ -81,6 +81,7 @@ WIP，等我几天。
 1. 克隆本仓库，使用像 `git clone` 这样的命令。
 2. 如果你没有安装 `yarn`，请执行 `npm install -g yarn`。
 3. 执行 `yarn`。
+4. 执行 `yarn init`。
 
 ### 测试
 
